@@ -86,8 +86,8 @@ doctorSchema.methods.generateAuthToken = async function () {
 };
 
 doctorSchema.statics.findByCredentials = async (email, password) => {
-  const doctor = await doctor.findOne({ email });
-
+  const doctor = await Doctor.findOne({ email });
+  console.log(doctor)
   if (!doctor) {
     throw new Error("Unable to login");
   }
@@ -103,7 +103,7 @@ doctorSchema.statics.findByCredentials = async (email, password) => {
 doctorSchema.pre("save", async function (next) {
     const doctor = this;
   
-    if (!doctor.isModified("password")) {
+    if (doctor.isModified("password")) {
       doctor.password = await bcrypt.hash(doctor.password, 8);
     }
   

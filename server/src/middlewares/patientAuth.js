@@ -1,25 +1,26 @@
 const jwt = require("jsonwebtoken");
-const Doctor = require("../models/doctor");
+const Patient = require("../models/patient");
 
-const doctorAuth = async (req, res, next) => {
+const patientAuth = async (req, res, next) => {
   try {
     const token = req.header("Authorization").replace("Bearer ", "");
 
     const decoded = jwt.verify(token, "Hospital management system");
-    const doctor = await Doctor.findOne({
+    // console.log(decoded)
+    const patient = await Patient.findOne({
       _id: decoded._id,
       "tokens.token": token,
     });
-    if (!doctor) {
+    if (!patient) {
       throw new Error();
     }
 
     req.token = token;
-    req.doctor = doctor;
+    req.patient = patient;
     next();
   } catch (e) {
     res.status(401).send({ error: "Please authenticate" });
   }
 };
 
-module.exports = doctorAuth;
+module.exports = patientAuth;
