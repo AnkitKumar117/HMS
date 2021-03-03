@@ -11,7 +11,7 @@ const doctorSchema = new mongoose.Schema(
       required: true,
     },
     employee_id: {
-      type: Number,
+      type: String,
       trim: true,
       required: true,
     },
@@ -21,7 +21,7 @@ const doctorSchema = new mongoose.Schema(
       required: true,
     },
     contact_detail: {
-      type: Number,
+      type: String,
       trim: true
     },
     email: {
@@ -59,13 +59,10 @@ const doctorSchema = new mongoose.Schema(
         },
       },
     ],
-    Degree: [
-      {
-        name: {
+
+    Degree:{
           type: String,
-        },
       },
-    ],
   },
   {
     timestamps: true,

@@ -27,8 +27,7 @@ router.post("/patient/login", async (req, res) => {
     );
     console.log(patient);
     const token = await patient.generateAuthToken();
-    res.send({ patient, token });
-    res.status(201).send({ patient, token });
+    res.status(200).send({ patient, token });
   } catch (e) {
     res.status(400).send({ error: "Patient is not admitted." });
   }

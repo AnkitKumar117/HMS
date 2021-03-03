@@ -19,18 +19,17 @@ const patientSchema = new mongoose.Schema(
       trim: true,
     },
     age: {
-      type: Number,
+      type: String,
       required: true,
       trim: true,
     },
     contact_detail: {
-      type: Number,
+      type: String,
       required: true,
       trim: true,
     },
     payment: {
-      type: Number,
-      required: true,
+      type: String,
       trim: true,
     },
     others: {
