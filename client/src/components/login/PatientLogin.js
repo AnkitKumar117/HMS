@@ -6,6 +6,7 @@ const PatientLogin = () => {
     email: '',
     password: ''
   })
+ 
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -33,6 +34,7 @@ const PatientLogin = () => {
         console.log(response.data.token);
         localStorage.setItem('isSignedIn', true);
         localStorage.setItem('token', response.data.token);
+        
         console.log('user logged in successfully')
       }else {
         console.log('Login failed')

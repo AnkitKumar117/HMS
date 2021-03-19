@@ -55,7 +55,7 @@ const PatientCreate = ()=>{
       };
     
       return (
-        <div className="main-form">
+        <React.Fragment>
           <h2>Create account as Patient</h2>
           <form onSubmit={handleSubmit} className="ui form">
           <div className="field">
@@ -139,7 +139,7 @@ const PatientCreate = ()=>{
               Create account
             </button>
           </form>
-        </div>
+        </React.Fragment>
       );
 }
 

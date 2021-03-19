@@ -17,9 +17,9 @@ const DoctorCreate = () => {
         console.log(doctor);
         const payload = {
             "name": doctor.name,
-            "employee_id": Number(doctor.e_id),
+            "employee_id": doctor.e_id,
             "address": doctor.address,
-            "contact_detail": Number(doctor.contact_detail),
+            "contact_detail": doctor.contact_detail,
             "specialization": doctor.specialization,
             "Degree":doctor.degree,
             "email":  doctor.email,
@@ -56,7 +56,7 @@ const DoctorCreate = () => {
       };
     
       return (
-        <div className="main-form">
+        <React.Fragment>
           <h2>Create account as Doctor</h2>
           <form onSubmit={handleSubmit} className="ui form">
           <div className="field">
@@ -140,8 +140,6 @@ const DoctorCreate = () => {
                 onChange={handleChange}
               />
             </div>
-
-
             <button
               className="ui button primary"
               onClick={handleSubmit}
@@ -150,7 +148,7 @@ const DoctorCreate = () => {
               Create account
             </button>
           </form>
-        </div>
+        </React.Fragment>
       );
 }
 

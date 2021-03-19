@@ -2,6 +2,7 @@ const express = require('express')
 require('./src/db/mongoose');
 const doctorRouter = require('./src/Routes/doctor')
 const patientRouter = require('./src/Routes/patient')
+const employeeRouter = require('./src/Routes/employee')
 //const connectionURL = 'express: //127.0.0.1:5000'
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(function (req, res, next) {
 
 app.use(doctorRouter)
 app.use(patientRouter)
+app.use(employeeRouter)
 
 app.get("", (req, res) =>{
     res.send('Call me daddy')
