@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const UnAuthHeader = () => {
   return (
-    <div className="ui pointing menu class">
+    <div className="ui pointing secondary menu">
       <Link to="/" className="item">Hospital Management System</Link>
       <div className="right menu">
         <Link to="/universallogin" className="item">Login</Link>

@@ -49,4 +49,14 @@ router.get("/doctor/me", doctorAuth, async (req, res) => {
   res.send(req.doctor);
 });
 
+router.get("/alldoctor", async (req, res) => {
+  try {
+    const doctors = await Doctor.find({});
+    // console.log(doctors)
+    res.status(200).send(doctors)
+  } catch (e) {
+    res.status(400).send(e)
+  }
+})
+
 module.exports = router;

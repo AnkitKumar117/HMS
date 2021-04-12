@@ -7,19 +7,24 @@ import PatientLogin from "./login/PatientLogin";
 import HomePage from "./pages/HomePage";
 import Login from "./login/UniversalLogin";
 import SignUp from "./login/SignUp";
-import doctorprofile from "./pages/DoctorProfile";
-
+import DoctorProfile from "./Profiles/DoctorProfile";
+import PatientProfile from "./Profiles/PatientProfile";
+import CreateAppointment from "./pages/CreateAppointment";
+import MyPatient from "./pages/MyPatient";
+import MyReport from "./pages/MyReport";
 
 const App = () => {
   return (
     <BrowserRouter>
       <div className="ui container">
-
         <div>
           <Switch>
-            
             <Route path="/" exact component={HomePage} />
-            <Route path="/doctor" exact component={doctorprofile} />
+            <Route path="/myreport" exact component ={MyReport} />
+            <Route path="/mypatient" exact component ={MyPatient} />
+            <Route path="/appointment" exact component = {CreateAppointment} />
+            <Route path="/patientprofile" exact component={PatientProfile} />
+            <Route path="/doctorprofile" exact component={DoctorProfile} />
             <Route path="/universalsignup" exact component={SignUp} />
             <Route path="/universallogin" exact component={Login} />
             <Route path="/doctorlogin" exact component={DoctorLogin} />

@@ -26,6 +26,7 @@ const DoctorCreate = () => {
             "password": doctor.password
             
         }
+        try{
         const response = await Axios.post('/doctor', payload);
         if(response.status === 201) {
           setNewDoctor(prevState => ({
@@ -39,6 +40,10 @@ const DoctorCreate = () => {
         }else {
           console.log('Unable to create account')
         }
+      }
+      catch(e){
+        console.log('Error occured as doctor')
+      }
       };
     
       const handleChange = (e) => {

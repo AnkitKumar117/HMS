@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
-const PatientHeader = () => {
+const PatientHeader = ({page}) => {
   const [isSignedIn,setIsSignedIn ] = useState(
     localStorage.getItem("isSignedInPatient")
   );
@@ -31,12 +31,12 @@ const PatientHeader = () => {
   };
 
   return (
-    <div className="ui pointing menu class">
-      <Link className="item" to="/myreport">
+    <div className="ui secondary pointing menu">
+      <Link className={`${page==='report' ? 'active' : ''} item`} to="/myreport">
         My Report
       </Link>
       <div className="right menu">
-        <Link className="item" to="/patient">
+        <Link className={`${page=== 'patient' ? 'active':''} item`} to="/patientprofile">
           My Profile
         </Link>
 
