@@ -72,7 +72,8 @@ const MyReport = () => {
               <footer>
                 <p>
                   {" "}
-                  <i>Hospital address: </i> abc pincode:123123
+                  <span><i>Hospital address: </i> abc </span>
+                  <i>pincode:123123</i>
                 </p>
                 <p>
                   <i>Hospital email: </i> hms@hms.com
@@ -91,10 +92,17 @@ const MyReport = () => {
         <div
           key={myappointment._id}
           className="ui raised card"
+          style={{background:"#f5f5f0"}}
           onClick={() => setSelectedmyappointment(myappointment)}
         >
           <div className="content">
-            <div className="header">{myappointment.patient_desc}</div>
+            <div className="header">
+              <p>Doctor:{myappointment.doctor_name}</p>
+
+              </div>
+            <div className="description" style={{borderBottom: '1px solid #49303c'}}><i>Patient description:</i> <p>{myappointment.patient_desc}</p></div>
+            <div className="description"><i>Doctor description:</i><p>{myappointment.doctor_desc}</p></div>
+            
           </div>
         </div>
       );
@@ -105,15 +113,15 @@ const MyReport = () => {
     <div>
       <PatientHeader page="patient" />
       <div className="ui two column grid">
-        <div className="column">
-          <h2> My appointment </h2>
+        <div className="column" style={{background:"#d6ccc2" ,textAlign:"left"}}>
+          <h2> Appointments </h2>
           {myappointment.length === 0
             ? "No report found"
             : rendermyappointmentlist()}
         </div>
-        <div className="column">
+        <div className="column" style={{ background: "#e6e6e6",padding: '35px'}}>
           <RenderReport />
-          <button className="ui button" onClick={handlePrint}>
+          <button className="ui blue button" style={{marginTop:"5px"}} onClick={handlePrint}>
             Download/Print Report
           </button>
         </div>

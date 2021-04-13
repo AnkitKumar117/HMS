@@ -24,7 +24,10 @@ const MyPatient = () => {
   }, []);
 
   const renderappointmentlist = () => {
+    var cnt=0;
     return appointment.map((appointment) => {
+      if(!appointment.doctor_desc){
+        cnt=1;
       return (
         <div
           key={appointment._id}
@@ -36,11 +39,28 @@ const MyPatient = () => {
             <div className="header">{appointment.patient_desc}</div>
           </div>
         </div>
-      );
+      );}
+      if(cnt===0){
+        cnt=1;
+        return (
+          <div
+          key={appointment._id}
+          className="ui list"
+          onClick={() => setSelectedappointment(appointment)}
+          style={{ cursor: "pointer" }}
+        >
+           <div className="content">
+            <div className="header" style={{fontSize: '17px', marginTop: '10px', color: '#655a63'}}>No new patients for today.</div>
+          </div>
+        </div>
+
+        )
+      }
     });
+    
   };
    const onSubmitDescription = ()=>{
-     console.log(selectedappointment);
+    //  console.log(selectedappointment);
      const payload ={
        ...selectedappointment,
        doctor_desc: description
@@ -65,18 +85,18 @@ const MyPatient = () => {
   return (
     <div>
       <DoctorHeader page="patient" />
-      <div className="ui two column grid">
-        <div className="column">
+      <div className="ui two column grid" style={{marginTop:"10px"}}>
+        <div className="column" style={{background:"#d6ccc2" ,textAlign:"left"}}>
           <h3> Patient Appointment List</h3>
-          {appointment.length === 0 ? "" : renderappointmentlist()}
+          {appointment.length === 0 ? "No appointments for today" : renderappointmentlist()}
         </div>
-        <div className="column">
-          <div className="content">
-            <h1>Patient Appointment</h1>
+        <div className="column" style={{ background: "#e6e6e6",padding: '35px'}}>
+          <div className="content" >
+            <h3>Patient Appointment</h3>
             <div className="column">
-              <h3> Patient Name: {selectedappointment.patient_name} </h3>
-              <h3> Age: {selectedappointment.patient_age}</h3>
-              <p>Description: {selectedappointment.patient_desc} </p>
+              <h4> Patient Name: {selectedappointment.patient_name} </h4>
+              <h4> Age: {selectedappointment.patient_age}</h4>
+              <p style={{marginBottom:"10px"}}>Patient description: {selectedappointment.patient_desc} </p>
             </div>
           </div>
 
@@ -90,7 +110,7 @@ const MyPatient = () => {
             </div>
           </div>
           <br></br>
-          <button className="ui button" onClick={onSubmitDescription}>
+          <button className="ui blue button" onClick={onSubmitDescription}>
             Confirm description
           </button>
         </div>

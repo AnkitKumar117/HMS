@@ -8,7 +8,10 @@ const HomePage = () => {
   return (
     <div>
         <UnAuthHeader/>
-      <div className="ui three column grid">
+        <div style={{color:"blue" }}>
+          <h2>Hospital name</h2>
+        </div>
+      <div className="ui three column grid" style={{marginTop:"150px", border:"1px solid black", backgroundColor:"Gray"}}>
         <div className="column">
           <div className="ui fluid card">
             <div className="image">
@@ -24,7 +27,7 @@ const HomePage = () => {
                   Login{" "}
                 </Link>
               </div>
-              <div className="column">
+              <div className="column" style={{ float:"right"}}>
                 <Link className="ui button" to="/universalsignup">
                   {" "}
                   Register{" "}
@@ -67,7 +70,10 @@ const HomePage = () => {
             </div>
             <div className="ui two column grid">
               <div className="column">
-                <button className="ui button"> Login </button>
+              <Link className="ui button" to="/adminlogin">
+                  {" "}
+                  Login{" "}
+                </Link>
               </div>
               {/* <div className="column">
                 <button className="ui button"> Register </button>
