@@ -1,9 +1,11 @@
 import axios from "axios";
+import {Redirect} from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 import PatientHeader from "../Headers/PatientHeader";
 
 const CreateAppointment = () => {
   const [data, setData] = useState([]);
+  const [onsub, setOnsub] = useState(false);
   const [selecteddoctor, setSelecteddoctor] = useState({});
   const [description, setDescription] = useState("");
 
@@ -21,9 +23,10 @@ const CreateAppointment = () => {
       }
     })();
   }, []);
-
+  if(onsub===true){
+    return <Redirect to="/patientprofile"/>
+  }
   const onSubmitAppointment = () => {
-    console.log(selecteddoctor);
     const payload = {
       doctor_id: selecteddoctor._id,
       patient_desc: description,
@@ -40,10 +43,12 @@ const CreateAppointment = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log(response.data);
+        setOnsub(true);
       } catch (e) {
         console.log("Error in submitting appointment table", e);
       }
     })();
+
   };
 
   const renderdoctorlist = () => {
@@ -51,8 +56,9 @@ const CreateAppointment = () => {
       return (
         <div
           key={doctor._id}
-          className="ui raised card"
-          onClick={() => setSelecteddoctor(doctor)} style={{cursor: "pointer"}}
+          className="ui centered raised card"
+          onClick={() => setSelecteddoctor(doctor)}
+          style={{ cursor: "pointer" }}
         >
           <div className="content">
             <div className="header">{doctor.name}</div>
@@ -66,36 +72,43 @@ const CreateAppointment = () => {
   };
 
   return (
-    <div>
-      <PatientHeader page="patient"/>
-      <div className="ui two column grid">
-        <div className="column">
-          {data.length === 0 ? "" : renderdoctorlist()}
-        </div>
-        <div className="column">
-          <div className="content">
-            <h1>Appointment</h1>
-            <div className="column">
-              <h2>{selecteddoctor.name} </h2>
-            </div>
-            <div className="column">
-              Contact: {selecteddoctor.contact_detail}
-            </div>
-            <div className="column"> Specialization: {selecteddoctor.specialization}</div>
+    <div className="doctor">
+      <div className="ui container">
+        <PatientHeader page="patient" />
+        <div
+          className="ui two column grid"
+          style={{ marginTop: "5%", background: "white", height: '80vh' }}
+        >
+            <div className="column" style={{textAlign:"center"}}>
+              <h3>Doctor List</h3>
+              {data.length === 0 ? "No registered doctors" : renderdoctorlist()}
           </div>
-          <div className="ui form">
-            <div className="field">
-              <label>Please write your description:</label>
-              <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
+          <div
+            className="column"
+            style={{ background: "#e6e6e6", padding: "35px" }}
+          >
+            <div className="content">
+              <h1>Appointment</h1>
+              <div className="column">
+                <h4>Doctor Name:{selecteddoctor.name} </h4>
+                <h4>Contact: {selecteddoctor.contact_detail}</h4>
+                <h4>Specialization: {selecteddoctor.specialization}</h4>
+              </div>
             </div>
+            <div className="ui form">
+              <div className="field">
+                <label>Please write your description:</label>
+                <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                ></textarea>
+              </div>
+            </div>
+            <br />
+            <button className="ui button" onClick={onSubmitAppointment}>
+              Confirm Appointment
+            </button>
           </div>
-          <br/>
-          <button className="ui button" onClick={onSubmitAppointment}>
-            Confirm Appointment
-          </button>
         </div>
       </div>
     </div>

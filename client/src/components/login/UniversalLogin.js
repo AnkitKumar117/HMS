@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import Select from "react-select";
-import "./Form.css";
-// import Header from '../Headers/UnAuthHeader';
 import axios from "axios";
 import UnAuthHeader from "../Headers/UnAuthHeader";
+import "../pages/homepage.css";
+import "./Form.css";
 
 const Login = () => {
-  const [log, setLog] = useState('');
+  const [log, setLog] = useState("");
   const [user, setUser] = useState({
     email: "",
     password: "",
     user: "Doctor",
   });
 
-  useEffect( () => {}, [log]);
-  if(log === 'Patient'){
-    return <Redirect to="/patientprofile" />
+  useEffect(() => {}, [log]);
+  if (log === "Patient") {
+    return <Redirect to="/patientprofile" />;
   }
 
-  if(log === 'Doctor'){
-    return <Redirect to="/doctorprofile" />
+  if (log === "Doctor") {
+    return <Redirect to="/doctorprofile" />;
   }
 
   const handleChange = (e) => {
@@ -40,7 +40,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(user.user === 'Doctor') {
+    if (user.user === "Doctor") {
       (async () => {
         const payload = {
           email: user.email,
@@ -60,12 +60,12 @@ const Login = () => {
           localStorage.setItem("isSignedInDoctor", true);
           localStorage.setItem("token", response.data.token);
           console.log("Doctor logged in successfully");
-          setLog('Doctor')
+          setLog("Doctor");
         } catch (e) {
           console.log("Login failed:", e);
         }
       })();
-    }else {
+    } else {
       (async () => {
         const payload = {
           email: user.email,
@@ -85,60 +85,72 @@ const Login = () => {
           localStorage.setItem("isSignedInPatient", true);
           localStorage.setItem("token", response.data.token);
           console.log("patient logged in successfully");
-          setLog('Patient')
+          setLog("Patient");
         } catch (e) {
           console.log("Login failed:", e);
         }
       })();
     }
-    
   };
 
   return (
-    <div>
-      <UnAuthHeader />
-      <div className="main-form">
-        <h2 style={{ textAlign: "center" }}>Login</h2>
-        <form onSubmit={handleSubmit} className="ui form">
-          <div className="field">
-            <label>Email</label>
-            <input
-              type="email"
-              placeholder="abc@xyz.com"
-              id="email"
-              value={user.email}
-              onChange={handleChange}
-            />
+    <div className="home">
+      <div className="ui container">
+        <UnAuthHeader />
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div className="main-form">
+            <h2 style={{ textAlign: "center" }}>Login</h2>
+            <form
+              onSubmit={handleSubmit}
+              className="ui form"
+              style={{ marginTop: "10px" }}
+            >
+              <div className="field">
+                <label>Email</label>
+                <input
+                  type="email"
+                  placeholder="abc@xyz.com"
+                  id="email"
+                  value={user.email}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="field">
+                <label>Password</label>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  id="password"
+                  value={user.password}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="ui form field">
+                <label>Login As:</label>
+                <Select
+                  options={options}
+                  onChange={(e) => {
+                    console.log(e.value);
+                    setUser((prevState) => ({
+                      ...prevState,
+                      user: e.value,
+                    }));
+                  }}
+                />
+              </div>
+              <button
+                className="ui button primary"
+                onClick={handleSubmit}
+                style={{ marginTop: "10px", marginBottom: "10px" }}
+              >
+                Login
+              </button>
+            </form>
+            <Link to="/universalsignup">
+              Do not have an account? Signup
+            </Link>
           </div>
-          <div className="field">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Password"
-              id="password"
-              value={user.password}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="ui form field">
-            <label>Login As:</label>
-              <Select options={options} onChange={(e) => {
-                console.log(e.value);
-                setUser((prevState) => ({
-                  ...prevState,
-                  user: e.value,
-                }));
-              }}/>
-          </div>
-          <button
-            className="ui button primary"
-            onClick={handleSubmit}
-            style={{ 'marginTop': '10px', 'marginBottom': '10px' }}
-          >
-            Login
-          </button>
-        </form>
-        <Link to="/universalsignup" style={{'color': 'rgb(189, 129, 95)'}}>Do not have an account? Signup</Link>
+        </div>
       </div>
     </div>
   );

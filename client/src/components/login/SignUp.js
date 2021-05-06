@@ -22,14 +22,17 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <div className="home"> 
+    <div className="ui container">
       <UnAuthHeader/>
-      <div className="main-form">
+      <div  style={{display:"flex", justifyContent:"center"}}>
+      <div className="main-form" >
         <div className="ui secondary pointing menu">
           <div
             onClick={handleClick}
             className={`${user.doctor} item`}
             id="doctor"
+            style={{cursor: 'pointer'}}
           >
             Doctor
           </div>
@@ -37,12 +40,15 @@ const SignUp = () => {
           onClick={handleClick}
           className={`${user.patient} item`}
           id="patient"
+          style={{cursor: 'pointer'}}
         >
           Patient
         </div>
         </div>
         
         {user.doctor === "active" ? <DoctorCreate/>: <PatientCreate/>}
+      </div>
+      </div>
       </div>
     </div>
   );

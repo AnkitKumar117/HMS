@@ -27,8 +27,8 @@ const PatientProfile = ()=>{
 
     const renderprofile = ()=>{
         return(
-          <div className="ui grid" style={{margin: '10px'}}>
-              <div className = "six wide column"  style={{background:"#e8dae6" , textAlign:"center"}}>
+          <div className="ui grid"  style={{margin: '10px',marginTop: '3%', display:"flex" }}>
+              <div className = "six wide column"  style={{background:"#e8dae1" , textAlign:"center"}}>
                     <img className="ui medium circular image" src="https://visualpharm.com/assets/380/Guest%20Male-595b40b65ba036ed117d41bb.svg" />
                     <p style={{fontSize: '17px', marginTop: '10px', color: '#514c4e'}}> <b>Name : </b>{patient.name}</p>
                     <p style={{fontSize: '17px', marginTop: '10px', color: '#514c4e'}}><b>Age :</b> {patient.age}</p>
@@ -55,10 +55,11 @@ const PatientProfile = ()=>{
         );
     }
     return (
-        <div className="ui container">
+        <div className="patient">
+            <div className="ui container">
             <PatientHeader page="patient"/>
-            {renderprofile()}
-            
+            <div>{renderprofile()}</div>
+            </div>
         </div>
     );
 };

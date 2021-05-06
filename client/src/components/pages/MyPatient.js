@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import DoctorHeader from "../Headers/DoctorHeader";
 import axios from "axios";
+import {Redirect} from "react-router-dom";
 
 const MyPatient = () => {
   const [appointment, setAppointment] = useState([]);
+  const [onsub, setOnsub] = useState(false);
   const [selectedappointment, setSelectedappointment] = useState({});
   const [description, setDescription] = useState("");
   useEffect(() => {
@@ -22,7 +24,9 @@ const MyPatient = () => {
       }
     })();
   }, []);
-
+  if(onsub===true){
+    return <Redirect to="/doctorprofile" />
+  }
   const renderappointmentlist = () => {
     var cnt=0;
     return appointment.map((appointment) => {
@@ -36,7 +40,9 @@ const MyPatient = () => {
           style={{ cursor: "pointer" }}
         >
           <div className="content">
-            <div className="header">{appointment.patient_desc}</div>
+            <div className="header">Name: {appointment.patient_name}</div>
+            <hr></hr>
+            <div className="content">{appointment.patient_desc}</div>
           </div>
         </div>
       );}
@@ -53,7 +59,6 @@ const MyPatient = () => {
             <div className="header" style={{fontSize: '17px', marginTop: '10px', color: '#655a63'}}>No new patients for today.</div>
           </div>
         </div>
-
         )
       }
     });
@@ -75,6 +80,7 @@ const MyPatient = () => {
            headers: {Authorization: `Bearer ${token}`}
          });
          console.log(response.data);
+         setOnsub(true);
        } catch(e){
          console.log("Error in updating doctor description", e);
        }
@@ -83,10 +89,11 @@ const MyPatient = () => {
    };
 
   return (
-    <div>
+    <div className="doctor">
+      <div className="ui container">
       <DoctorHeader page="patient" />
-      <div className="ui two column grid" style={{marginTop:"10px"}}>
-        <div className="column" style={{background:"#d6ccc2" ,textAlign:"left"}}>
+      <div className="ui two column grid" style={{marginTop:"5%", background: 'white'}}>
+        <div className="column" style={{textAlign:"left"}}>
           <h3> Patient Appointment List</h3>
           {appointment.length === 0 ? "No appointments for today" : renderappointmentlist()}
         </div>
@@ -114,6 +121,7 @@ const MyPatient = () => {
             Confirm description
           </button>
         </div>
+      </div>
       </div>
     </div>
   );

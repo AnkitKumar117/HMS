@@ -92,7 +92,7 @@ const MyReport = () => {
         <div
           key={myappointment._id}
           className="ui centered raised card"
-          style={{ background:"#f5f5f0" ,display:"flex", justifyContent:"center"}}
+          style={{ background:"#f5f5f0" ,display:"flex", justifyContent:"center" , marginTop:"10px"}}
           onClick={() => setSelectedmyappointment(myappointment)}
         >
           <div className="content">
@@ -110,7 +110,8 @@ const MyReport = () => {
   };
 
   return (
-    <div>
+    <div className="patient">
+      <div className="ui container">
       <PatientHeader page="patient" />
       <div className="ui two column grid" >
         <div className="column" style={{textAlign:"center"}}>
@@ -126,6 +127,7 @@ const MyReport = () => {
           </button>
         </div>
       </div>
+    </div>
     </div>
   );
 };

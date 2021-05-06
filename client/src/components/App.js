@@ -12,12 +12,12 @@ import PatientProfile from "./Profiles/PatientProfile";
 import CreateAppointment from "./pages/CreateAppointment";
 import MyPatient from "./pages/MyPatient";
 import MyReport from "./pages/MyReport";
+import './pages/homepage.css'
 
 const App = () => {
   return (
     <BrowserRouter>
-      <div className="ui container">
-        <div>
+      <div>
           <Switch>
             <Route path="/" exact component={HomePage} />
             <Route path="/myreport" exact component ={MyReport} />
@@ -32,7 +32,6 @@ const App = () => {
             <Route path="/patientcreate" exact component= {PatientCreate} />
             <Route path="/patientlogin" exact component={PatientLogin} />
           </Switch>
-        </div>
       </div>
     </BrowserRouter>
   );

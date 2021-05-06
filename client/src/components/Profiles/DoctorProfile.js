@@ -25,7 +25,8 @@ const DoctorProfile = () => {
 
     const renderProfile = ()=>{
         return(
-            <div className="ui grid" style={{margin: '10px'}}>
+            
+            <div className="ui grid" style={{margin: '10px',marginTop: '3%', display:"flex" }}>
                 <div className = "six wide column"  style={{background:"#e8dae6" , textAlign:"center"}}>
                       <img className="ui medium circular image"   src="https://visualpharm.com/assets/364/Doctor%20Male-595b40b65ba036ed117d3f68.svg"/>
                       <p style={{fontSize: '17px', marginTop: '10px', color: '#514c4e'}}> <b>Name : </b>{doctor.name}</p>
@@ -55,11 +56,13 @@ const DoctorProfile = () => {
     }
 
   return (
-    <div>
-    <DoctorHeader page="doctor"/>
+    <div className="doctor">
+        <div className="ui container">
+        <DoctorHeader page="doctor"/>   
+        <div>{renderProfile()}</div>
+        </div>
     
-    {renderProfile()}
-    <button className="ui teal button">Edit Profile</button>
+    
   </div>
   );
 };

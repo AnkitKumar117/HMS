@@ -1,0 +1,44 @@
+/* .bgimg {
+    background-image: url('./hp.jpg');
+    height: 100vh;
+} */
+.home {
+  height: 100vh;
+  margin-top: 0px;
+  background-image: url("./hp.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+.login {
+  background-color: azure;
+  height: 100vh;
+}
+.main-form {
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  justify-content: center;
+  align-items: center;
+  width: 650px;
+  background-color: azure;
+  padding: 20px;
+  border-radius: 1%;
+  border: 1px solid aqua;
+}
+.doctor {
+  height: 100vh;
+  margin-top: 0px;
+  background-image: url("./dpp.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+
+.patient {
+    height: 100vh;
+    margin-top: 0px;
+    background-image: url("./dpp1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+  }

@@ -56,7 +56,7 @@ const PatientCreate = ()=>{
     
       return (
         <React.Fragment>
-          <h2>Create account as Patient</h2>
+          <h2>Register as Patient</h2>
           <form onSubmit={handleSubmit} className="ui form">
           <div className="field">
               <label>Name</label>

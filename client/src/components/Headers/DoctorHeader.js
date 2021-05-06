@@ -31,12 +31,12 @@ const DoctorHeader = ({ page }) => {
   };
 
   return (
-    <div className="ui secondary pointing menu">
+    <div className="ui secondary pointing menu" >
       <Link className={`${page === 'patient'? 'active': ''} item`} to="/mypatient">
         My Patients
       </Link>
       <div className="right menu">
-        <Link className={`${page === 'doctor'? 'active': ''} item`} to="/doctorprofile">
+        <Link  className={`${page === 'doctor'? 'active': ''} item`} to="/doctorprofile">
           My Profile
         </Link>
 
