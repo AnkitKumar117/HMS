@@ -29,7 +29,7 @@ app.use(employeeRouter)
 app.use(appointmentRouter)
 
 app.get("", (req, res) =>{
-    res.send('Call me daddy')
+    res.send('Testing 123 ..');
 })
 
 
